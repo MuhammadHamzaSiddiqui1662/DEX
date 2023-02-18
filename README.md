@@ -1,6 +1,6 @@
-# Sample Hardhat Project
+# Decentralized Crypto Exchange
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This project demonstrates a basic Decentralized Exchange using Hardhat. It comes with a Dex contract, four mock contracts of tokens used in it, a test for that contract, and scripts that deploys, addTokens, and perform other tasks to that contract.
 
 After Cloning Run following Commands:
 
