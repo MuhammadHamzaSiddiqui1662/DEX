@@ -7,6 +7,9 @@
     "typechain": "npx hardhat typechain",
     "compile": "npx hardhat compile",
     "deploy": "npx hardhat run scripts/deploy.ts",
+    "deploy:goerli": "npx hardhat run --network goerli scripts/deploy.ts",
+    "run": "npx hardhat run scripts",
+    "run:goerli": "npx hardhat run --network goerli scripts",
     "test": "npx hardhat test"
   },
   "keywords": [],
