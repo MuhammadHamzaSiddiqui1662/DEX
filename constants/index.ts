@@ -1,6 +1,6 @@
 import { formatBytes32String } from "@ethersproject/strings";
 
-export const DEX_ADDRESS = "0x6689513e16b5aCfd86a69256fd0Afa5f471fd581";
+export const DEX_ADDRESS = "0xA109804edd5C84c9c9Aaf5Bcc583C44A0397eF7b";
 export const DAI_ADDRESS = "0x8daa47c2A76730Ed4B9b6085887b788C52C82c57";
 export const BAT_ADDRESS = "0x30eD39F8a0A490337290B2095484A30C3DB80A31";
 export const REP_ADDRESS = "0x15069E4FC4877505E9b3AE3559e1AB818b2ce82E";
