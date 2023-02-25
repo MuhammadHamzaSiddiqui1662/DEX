@@ -6,11 +6,11 @@ export const BAT_ADDRESS = "0x30eD39F8a0A490337290B2095484A30C3DB80A31";
 export const REP_ADDRESS = "0x15069E4FC4877505E9b3AE3559e1AB818b2ce82E";
 export const ZRX_ADDRESS = "0x4fdDD49d0DdcBd0704bd43E88dd095c1F92862aD";
 
-export const DEX = formatBytes32String("Dex");
-export const DAI = formatBytes32String("Dai");
-export const BAT = formatBytes32String("Bat");
-export const REP = formatBytes32String("Rep");
-export const ZRX = formatBytes32String("Zrx");
+export const DEX = formatBytes32String("DEX");
+export const DAI = formatBytes32String("DAI");
+export const BAT = formatBytes32String("BAT");
+export const REP = formatBytes32String("REP");
+export const ZRX = formatBytes32String("ZRX");
 
 export const ADDRESS_1 = "0x21521D4F1E4018053198b041D99d460E50C955C7";
 export const ADDRESS_2 = "0x322a6448063f27beA7fcD3aEb828b40efa80cC59";
