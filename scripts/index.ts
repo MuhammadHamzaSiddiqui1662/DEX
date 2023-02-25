@@ -1,5 +1,6 @@
 import { ethers } from "hardhat";
-import { DEX_ADDRESS } from "../constants";
+import { ADDRESS_1, DEX_ADDRESS } from "../constants";
+import { formatBytes32String } from "@ethersproject/strings";
 import { verify } from "../utils/verify";
 
 async function main() {
@@ -8,6 +9,8 @@ async function main() {
     const deployer = accounts[0];
 
     const Dex = await ethers.getContractFactory("Dex");
+    const dex = await Dex.attach(DEX_ADDRESS);
+    await dex.deposit(ethers.utils.parseEther("100"), formatBytes32String("Dai"), { from: ADDRESS_1 });
 
     // const dex = await Dex.deploy(...args);
     // await dex.deployed();
@@ -18,9 +21,8 @@ async function main() {
     //     console.log("Verified!");
     // }
 
-    const dex = await Dex.attach(DEX_ADDRESS);
-    const tokens = await dex.getTokens();
-    console.log("Token List: ", tokens.length);
+    // const tokens = await dex.getTokens();
+    // console.log("Token List: ", tokens.length);
 }
 
 main().catch((error) => {

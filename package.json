@@ -6,11 +6,15 @@
   "scripts": {
     "typechain": "npx hardhat typechain",
     "compile": "npx hardhat compile",
-    "deploy": "npx hardhat run scripts/deploy.ts",
-    "deploy:goerli": "npx hardhat run --network goerli scripts/deploy.ts",
+    "test": "npx hardhat test",
     "run": "npx hardhat run scripts",
     "run:goerli": "npx hardhat run --network goerli scripts",
-    "test": "npx hardhat test"
+    "deploy": "npx hardhat run scripts/deploy.ts",
+    "deploy:goerli": "npx hardhat run --network goerli scripts/deploy.ts",
+    "addTokens": "npx hardhat run scripts/addTokens.ts",
+    "addTokens:goerli": "npx hardhat run --network goerli scripts/addTokens.ts",
+    "seedFunding": "npx hardhat run scripts/seedFunding.ts",
+    "seedFunding:goerli": "npx hardhat run --network goerli scripts/seedFunding.ts"
   },
   "keywords": [],
   "author": "Muhammad Hamza Siddiqui",
