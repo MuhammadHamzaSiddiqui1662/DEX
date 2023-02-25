@@ -1,6 +1,5 @@
 import { ethers } from "hardhat";
-import { formatBytes32String } from "@ethersproject/strings";
-import { BAT_ADDRESS, DAI_ADDRESS, DEX_ADDRESS, REP_ADDRESS, ZRX_ADDRESS } from "../constants";
+import { BAT, BAT_ADDRESS, DAI, DAI_ADDRESS, DEX_ADDRESS, REP, REP_ADDRESS, ZRX, ZRX_ADDRESS } from "../constants";
 
 async function main() {
 
@@ -8,10 +7,10 @@ async function main() {
 
     const dex = await Dex.attach(DEX_ADDRESS);
 
-    await dex.addToken(formatBytes32String("Dai"), DAI_ADDRESS);
-    await dex.addToken(formatBytes32String("Bat"), BAT_ADDRESS);
-    await dex.addToken(formatBytes32String("Rep"), REP_ADDRESS);
-    await dex.addToken(formatBytes32String("Zrx"), ZRX_ADDRESS);
+    await dex.addToken(DAI, DAI_ADDRESS);
+    await dex.addToken(BAT, BAT_ADDRESS);
+    await dex.addToken(REP, REP_ADDRESS);
+    await dex.addToken(ZRX, ZRX_ADDRESS);
 
     const tokens = await dex.getTokens();
 
