@@ -1,7 +1,6 @@
 .navbar {
     width: 100%;
     height: 80px;
-    color: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,10 +8,16 @@
 
 .rightSide {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    gap: 30px;
     height: 100%;
     width: -webkit-fill-available;
+}
+
+.navbarHeading {
+    color: var(--color-primary);
+    font-size: 30px;
 }
 
 .navList {
