@@ -1,0 +1,8 @@
+.selectToken {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #00ff2233;
+    background: #121;
+    color: white;
+    font-weight: bold;
+}

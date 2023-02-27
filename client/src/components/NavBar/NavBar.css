@@ -1,0 +1,25 @@
+.navbar {
+    width: 100%;
+    height: 80px;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rightSide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: -webkit-fill-available;
+}
+
+.navList {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
