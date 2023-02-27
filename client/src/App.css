@@ -1,38 +1,128 @@
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  border: none;
+}
+
+ul>li {
+  list-style: none;
+}
+
 .App {
-  text-align: center;
+  padding: 0px 24px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  width: 100%;
+  height: 80px;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.rightSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: -webkit-fill-available;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.walletCard {
+  width: 500px;
+  /* height: 500px; */
+  border: 1px solid var(--color-primary);
+  border-radius: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  gap: 16px;
+}
+
+.outlinedInput {
+  border: 1px solid #00ff2233;
+  width: 100%;
+  background: #121;
   color: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
 }
 
-.App-link {
-  color: #61dafb;
+.outlinedInput:focus {
+  border: 1px solid var(--color-primary);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.inputWithLabel {
+  width: 100%;
+}
+
+.inputWithLabel label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.filledButton {
+  width: 100%;
+  background: var(--color-primary);
+  color: black;
+  font-weight: 800;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.transactionTypeTab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.transactionTypeTab>div {
+  text-align: center;
+  width: 100px;
+  padding: 8px;
+  background: #121;
+  font-weight: bold;
+}
+
+.transactionTypeTab>div:first-child {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.transactionTypeTab>div:last-child {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.transactionTypeTab>div.active {
+  background: var(--color-primary);
+  color: black;
+}
+
+.selectToken {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #00ff2233;
+  background: #121;
+  color: white;
+  font-weight: bold;
 }
