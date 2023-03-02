@@ -10,7 +10,8 @@ async function main() {
 
     const Dex = await ethers.getContractFactory("Dex");
     const dex = await Dex.attach(DEX_ADDRESS);
-    await dex.deposit(ethers.utils.parseEther("100"), formatBytes32String("Dai"), { from: ADDRESS_1 });
+
+    // await dex.deposit(ethers.utils.parseEther("100"), formatBytes32String("Dai"), { from: ADDRESS_1 });
 
     // const dex = await Dex.deploy(...args);
     // await dex.deployed();
@@ -21,8 +22,8 @@ async function main() {
     //     console.log("Verified!");
     // }
 
-    // const tokens = await dex.getTokens();
-    // console.log("Token List: ", tokens.length);
+    const tokens = await dex.getTokens();
+    console.log("Token List: ", tokens.length);
 }
 
 main().catch((error) => {

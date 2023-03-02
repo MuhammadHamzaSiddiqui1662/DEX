@@ -5,4 +5,7 @@
     background: #121;
     color: white;
     font-weight: bold;
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
 }

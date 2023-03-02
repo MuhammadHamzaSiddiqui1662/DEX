@@ -15,3 +15,24 @@
     align-items: center;
     gap: 16px;
 }
+
+.balances {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 16px;
+    padding: 16px 0px;
+}
+
+.dex-balance {
+    text-align: left;
+}
+
+.wallet-balance {
+    text-align: right;
+}
+
+.dex-balance>p:last-child,
+.wallet-balance>p:last-child {
+    color: #787;
+}

@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 import { Home } from './pages/Home/Home';
 import { Exchange } from './pages/Exchange/Exchange';
+import { WalletProvider } from './context/WalletProvider';
 
 function App() {
   return (
@@ -15,16 +16,18 @@ function App() {
           accentColor: "#00ff22",
           accentColorForeground: "black",
         })}>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />}>
-                <Route path="/wallet" element={<Wallet />} />
-                <Route path="/" element={<Exchange />} />
-                {/* <Route path="test" element={<Test />} /> */}
-                <Route path="*" element={<h3 style={{ color: "white" }}>Not Found</h3>} />
-              </Route>
-            </Routes>
-          </Router>
+          <WalletProvider>
+            <Router>
+              <Routes>
+                <Route path="/" element={<Home />}>
+                  <Route path="/wallet" element={<Wallet />} />
+                  <Route path="/" element={<Exchange />} />
+                  {/* <Route path="test" element={<Test />} /> */}
+                  <Route path="*" element={<h3 style={{ color: "white" }}>Not Found</h3>} />
+                </Route>
+              </Routes>
+            </Router>
+          </WalletProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </div>
