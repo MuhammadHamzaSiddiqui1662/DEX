@@ -1,8 +1,8 @@
-export const InputWithLabel = ({ label, type = "text" }) => {
+export const InputWithLabel = ({ label, type = "text", fullwidth = false }) => {
     return (
-        <div className="inputWithLabel">
-            <label htmlFor={`${label}Value`}>{label}</label>
-            <input className="outlinedInput" id={`${label}Value`} type={type} />
+        <div className={`inputWithLabel ${fullwidth && "fullwidth"}`}>
+            <label htmlFor={`${label}Value ${fullwidth && "fullwidth"}`}>{label}</label>
+            <input className={`outlinedInput ${fullwidth && " fullwidth"}`} id={`${label}Value`} type={type} />
         </div>
     )
 }

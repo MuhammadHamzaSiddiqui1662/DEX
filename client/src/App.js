@@ -5,6 +5,7 @@ import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 import { Home } from './pages/Home/Home';
+import { Exchange } from './pages/Exchange/Exchange';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Home />}>
-                <Route path="/" element={<Wallet />} />
+                <Route path="/wallet" element={<Wallet />} />
+                <Route path="/" element={<Exchange />} />
                 {/* <Route path="test" element={<Test />} /> */}
                 <Route path="*" element={<h3 style={{ color: "white" }}>Not Found</h3>} />
               </Route>

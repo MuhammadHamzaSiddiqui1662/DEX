@@ -10,13 +10,21 @@ ul>li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .App {
   padding: 0px 24px;
 }
 
+.fullwidth {
+  width: 100%;
+}
+
 .outlinedInput {
   border: 1px solid #00ff2233;
-  width: 100%;
   background: #121;
   color: white;
   border-radius: 8px;
@@ -28,9 +36,7 @@ ul>li {
   border: 1px solid var(--color-primary);
 }
 
-.inputWithLabel {
-  width: 100%;
-}
+.inputWithLabel {}
 
 .inputWithLabel label {
   font-size: 16px;
@@ -38,9 +44,18 @@ ul>li {
 }
 
 .filledButton {
-  width: 100%;
   background: var(--color-primary);
   color: black;
+  font-weight: 800;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.outlinedButton {
+  background: #121;
+  color: white;
   font-weight: 800;
   border-radius: 8px;
   padding: 16px;

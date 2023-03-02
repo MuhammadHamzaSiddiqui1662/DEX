@@ -1,4 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Link } from "react-router-dom";
 import './NavBar.css';
 export const NavBar = () => {
     return (
@@ -6,8 +7,8 @@ export const NavBar = () => {
             <h1 className="navbarHeading">DEX</h1>
             <div className="rightSide">
                 <ul className="navList">
-                    <li>Exchange</li>
-                    <li>Wallet</li>
+                    <li><Link to="/">Exchange</Link></li>
+                    <li><Link to="/wallet">Wallet</Link></li>
                 </ul>
                 <ConnectButton />
             </div>
