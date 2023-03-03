@@ -3,10 +3,12 @@ import { Wallet } from './pages/Wallet/Wallet';
 import { chains, client } from './config/wagmiConfig';
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import 'sweetalert2/src/sweetalert2.scss';
 import './App.css';
 import { Home } from './pages/Home/Home';
 import { Exchange } from './pages/Exchange/Exchange';
 import { WalletProvider } from './context/WalletProvider';
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           accentColorForeground: "black",
         })}>
           <WalletProvider>
+            <ToastContainer />
             <Router>
               <Routes>
                 <Route path="/" element={<Home />}>

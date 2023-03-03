@@ -21,3 +21,16 @@ export const ZrxContractConfig = {
     address: ZRX_ADDRESS,
     abi: zrxAbi,
 }
+
+export const SwalConfig = {
+    confirmButtonText: "GO BACK TO HOME",
+    buttonsStyling: true,
+    background: "#142934",
+    backdrop: "#030B15E5",
+    color: "#fff",
+    confirmButtonColor: "#1FD5AC33",
+    allowEnterKey: false,
+    customClass: {
+        confirmButton: "btn btn-three"
+    },
+}

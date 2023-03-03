@@ -1,8 +1,8 @@
 import "./SelectToken.css"
-export const SelectToken = ({ tokens, selectedToken, setSelectedToken }) => {
+export const SelectToken = ({ tokens, selectedToken, handleTokenChange }) => {
     return (
-        <select className="selectToken" value={selectedToken} onChange={e => setSelectedToken(e.target.value)} >
-            {tokens.map((token, index) => <option key={index} value={index}>{token}</option>)}
+        <select className="selectToken" value={selectedToken.address} onChange={handleTokenChange} >
+            {tokens.map((token) => <option key={token.address} value={token.address}>{token.symbol}</option>)}
         </select>
     )
 }
