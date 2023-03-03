@@ -18,7 +18,7 @@ export const useWallet = () => {
         address,
     });
 
-    const [amount, setAmount] = useState("0");
+    const [amount, setAmount] = useState("");
     const amountController = useMemo(() => ({
         value: amount,
         setValue: setAmount
@@ -230,7 +230,7 @@ export const useWallet = () => {
         }
     }
 
-    const getWalletBalance = () => {
+    const getWalletBalance = useCallback(() => {
         switch (selectedToken.symbol) {
             case "ETH":
                 return balance;
@@ -246,9 +246,9 @@ export const useWallet = () => {
             default:
                 return BigNumber.from(0);
         }
-    }
+    }, [selectedToken])
 
-    const getDexBalance = () => {
+    const getDexBalance = useCallback(() => {
         switch (selectedToken.symbol) {
             case "DAI":
                 return dexBalance.daiBalance;
@@ -262,14 +262,12 @@ export const useWallet = () => {
             default:
                 return BigNumber.from(0);
         }
-    }
+    }, [selectedToken, dexBalance])
 
     return {
         tokens: TOKENS,
         selectedToken,
         handleTokenChange,
-        amount,
-        setAmount,
         amountController,
         deposit,
         withdraw,
