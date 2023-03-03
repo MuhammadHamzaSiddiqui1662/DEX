@@ -1,8 +1,15 @@
-export const InputWithLabel = ({ label, type = "text", fullwidth = false, children, value, setValue }) => {
+export const InputWithLabel = ({ label, type = "text", fullwidth = false, children, value, setValue, placeholder }) => {
     return (
         <div className={`inputWithLabel ${fullwidth && "fullwidth"}`}>
             <label htmlFor={`${label}Value ${fullwidth && "fullwidth"}`}>{label}</label>
-            <input className={`outlinedInput ${fullwidth && " fullwidth"}`} id={`${label}Value`} type={type} value={value} onChange={e => setValue(e.target.value)} />
+            <input
+                id={`${label}Value`}
+                className={`outlinedInput ${fullwidth && " fullwidth"}`}
+                type={type}
+                value={value}
+                onChange={e => setValue(e.target.value)}
+                placeholder={placeholder}
+            />
             {children}
         </div>
     )

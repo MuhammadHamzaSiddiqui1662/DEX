@@ -27,8 +27,8 @@ export const Wallet = () => {
                         <p>{`${ethers.utils.formatEther(getWalletBalance())} ${selectedToken.symbol}`}</p>
                     </div>
                 </div>
-                <InputWithLabel label={"Amount"} type={"number"} fullwidth={true} value={amountController.value} setValue={amountController.setValue} >
-                    <SelectToken tokens={tokens} selectedToken={selectedToken} handleTokenChange={handleTokenChange} />
+                <InputWithLabel label={"Amount"} type={"number"} fullwidth={true} value={amountController.value} setValue={amountController.setValue} placeholder={"Enter Amount..."} >
+                    <SelectToken tokens={tokens} selectedToken={selectedToken} handleTokenChange={handleTokenChange} position="absolute" />
                 </InputWithLabel>
                 <button className="filledButton fullwidth" disabled={isLoading} type="button" onClick={selectedTab === TABS[0] ? deposit : withdraw}>{isLoading ? `Loading...` : selectedTab}</button>
             </div>

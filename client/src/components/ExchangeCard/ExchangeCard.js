@@ -15,9 +15,10 @@ export const ExchangeCard = () => {
             <h2 className="exchangeHeading">Exchange</h2>
             <div></div>
             <Tabs tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-            <SelectToken tokens={tokens} selectedToken={selectedToken} setSelectedToken={setSelectedToken} />
             <div></div>
-            <InputWithLabel label={"Amount"} type={"number"} fullwidth={true} />
+            <InputWithLabel label={"Amount"} type={"number"} fullwidth={true}>
+                <SelectToken tokens={tokens} selectedToken={selectedToken} setSelectedToken={setSelectedToken} position="absolute" />
+            </InputWithLabel>
             {selectedTab === "Limit" && <InputWithLabel label={"Price"} type={"number"} fullwidth={true} />}
             <div className="buttonSection" >
                 <button className="filledButton fullwidth" type="button">BUY</button>
