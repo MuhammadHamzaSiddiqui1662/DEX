@@ -1,5 +1,3 @@
-import useNotify from "../hooks/useNotify";
-
 export const truncateAddress = (address) => {
     if (!address) return "No Account";
     const match = address.match(/^(0x[a-zA-Z0-9]{2})[a-zA-Z0-9]+([a-zA-Z0-9]{2})$/);
@@ -13,14 +11,10 @@ export const awaitTransaction = async (transaction) => {
     let error;
     let status;
 
-    // const { notifyLoading, dismissNotify, notifySuccess, notifyError } = useNotify();
-    // const notifyId = notifyLoading("Transaction in progress...");
-
     try {
         tx = await transaction;
         receipt = await tx.wait();
         status = true;
-        // notifySuccess("Transaction Completed.")
     } catch (e) {
         console.log(e);
         if (e.reason) error = e.reason.replace("execution reverted:", "");
@@ -32,9 +26,7 @@ export const awaitTransaction = async (transaction) => {
         else if (e.data?.message) error = e.data.message;
         else if (e.message) error = e.message;
         status = false;
-        // notifyError(`Error: ${e.message}`)
     } finally {
-        // dismissNotify(notifyId);
     }
     return {
         tx,

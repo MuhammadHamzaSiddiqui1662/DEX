@@ -1,9 +1,8 @@
 import { ethers } from "ethers";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { InputWithLabel } from "../../components/InputWithLabel/InputWithLabel"
 import { SelectToken } from "../../components/SelectToken/SelectToken";
 import { Tabs } from "../../components/Tabs/Tabs";
-import useNotify from "../../hooks/useNotify";
 import { useWallet } from "../../hooks/useWallet";
 import "./Wallet.css";
 

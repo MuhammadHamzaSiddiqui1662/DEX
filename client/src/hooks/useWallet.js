@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { BatContractConfig, DaiContractConfig, DexContractConfig, RepContractConfig, SwalConfig, ZrxContractConfig } from "../config";
 import { useWalletContext } from "../context/WalletProvider";
 import { useAccount, useBalance, useContract, useContractReads, useProvider, useSigner } from 'wagmi';
 // import { useApproval } from "./useApproval";
 import { BigNumber, ethers } from "ethers";
 import { useApprovalErc20 } from "./useApproval";
-import { DAI_ADDRESS, DEX_ADDRESS, TOKENS } from "../config/constants";
+import { DEX_ADDRESS, TOKENS } from "../config/constants";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { awaitTransaction } from "../utils";
 import useNotify from "./useNotify";
@@ -36,12 +36,10 @@ export const useWallet = () => {
     const { approve } = useApprovalErc20();
 
     const {
-        ethBalance,
         daiBalance,
         batBalance,
         repBalance,
         zrxBalance,
-        setEthBalance,
         setDaiBalance,
         setBatBalance,
         setRepBalance,

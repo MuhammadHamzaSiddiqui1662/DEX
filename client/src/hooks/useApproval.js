@@ -1,10 +1,9 @@
 import { constants, Contract } from "ethers";
 import { erc20ABI } from "wagmi";
 import useNotify from "./useNotify";
-import { useWallet } from "./useWallet";
 
 export const useApprovalErc20 = () => {
-    const { notifyLoading, notifySuccess, notifyError, dismissNotify } = useNotify();
+    const { notifyLoading, notifySuccess, dismissNotify } = useNotify();
 
     const approve = async (contractAddress, spender, amount, signer, address) => {
         if (!signer) return;
