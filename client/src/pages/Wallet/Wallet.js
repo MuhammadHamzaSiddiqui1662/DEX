@@ -10,7 +10,7 @@ const TABS = ["Deposit", "Withdraw"];
 
 export const Wallet = () => {
     const [selectedTab, setSelectedTab] = useState(TABS[0]);
-    const { tokens, selectedToken, handleTokenChange, getWalletBalance, getDexBalance, deposit, amountController, isLoading } = useWallet();
+    const { tokens, selectedToken, handleTokenChange, getWalletBalance, getDexBalance, deposit, withdraw, amountController, isLoading } = useWallet();
 
     return (
         <div className="wallet">
@@ -30,7 +30,7 @@ export const Wallet = () => {
                 <InputWithLabel label={"Amount"} type={"number"} fullwidth={true} value={amountController.value} setValue={amountController.setValue} >
                     <SelectToken tokens={tokens} selectedToken={selectedToken} handleTokenChange={handleTokenChange} />
                 </InputWithLabel>
-                <button className="filledButton fullwidth" disabled={isLoading} type="button" onClick={deposit}>{isLoading ? `Loading...` : selectedTab}</button>
+                <button className="filledButton fullwidth" disabled={isLoading} type="button" onClick={selectedTab === TABS[0] ? deposit : withdraw}>{isLoading ? `Loading...` : selectedTab}</button>
             </div>
         </div>
     )

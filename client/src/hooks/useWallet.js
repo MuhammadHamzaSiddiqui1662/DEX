@@ -2,7 +2,6 @@ import { useCallback, useMemo, useState } from "react";
 import { BatContractConfig, DaiContractConfig, DexContractConfig, RepContractConfig, SwalConfig, ZrxContractConfig } from "../config";
 import { useWalletContext } from "../context/WalletProvider";
 import { useAccount, useBalance, useContract, useContractReads, useProvider, useSigner } from 'wagmi';
-// import { useApproval } from "./useApproval";
 import { BigNumber, ethers } from "ethers";
 import { useApprovalErc20 } from "./useApproval";
 import { DEX_ADDRESS, TOKENS } from "../config/constants";
@@ -12,11 +11,19 @@ import useNotify from "./useNotify";
 
 export const useWallet = () => {
     const [loading, setLoading] = useState(false);
+    const { data: signer } = useSigner();
+    const provider = useProvider();
+    const { isConnected, address, ...account } = useAccount();
+    const { data: balance, isLoading: isLoadingBalance } = useBalance({
+        address,
+    });
+
     const [amount, setAmount] = useState("0");
     const amountController = useMemo(() => ({
         value: amount,
         setValue: setAmount
     }), [amount])
+
     const [dexBalance, setDexBalance] = useState({
         daiBalance: BigNumber.from(0),
         batBalance: BigNumber.from(0),
@@ -24,12 +31,9 @@ export const useWallet = () => {
         zrxBalance: BigNumber.from(0)
     })
     const [selectedToken, setSelectedToken] = useState(TOKENS[0]);
-    const { data: signer } = useSigner();
-    const provider = useProvider();
-    const { isConnected, address, ...account } = useAccount();
-    const { data: balance, isLoading: isLoadingBalance } = useBalance({
-        address,
-    });
+    const handleTokenChange = useCallback((e) => {
+        setSelectedToken(TOKENS.filter(token => token.address === e.target.value)[0] || TOKENS[0])
+    }, [])
 
     const { notifyLoading, dismissNotify, notifySuccess, notifyError } = useNotify();
 
@@ -74,7 +78,6 @@ export const useWallet = () => {
             }))
         ],
         onSuccess(data) {
-            // getEthBalance();
             setDaiBalance(data[0]);
             setBatBalance(data[1]);
             setRepBalance(data[2]);
@@ -103,10 +106,11 @@ export const useWallet = () => {
                 Swal.fire({
                     ...SwalConfig,
                     title: "Warning!",
-                    text: "Purchase value can not be zero or empty",
+                    text: "Can not deposite ZERO or NULL value.",
                     icon: "warning",
                     iconColor: "#FF9700",
                 });
+                notifyError(`Error: Zero or NULL value`)
                 setLoading(false);
                 return;
             }
@@ -119,7 +123,6 @@ export const useWallet = () => {
                     selectedToken.ticker
                 )
             );
-            console.log(response);
             if (response.status) {
                 Swal.fire({
                     ...SwalConfig,
@@ -161,9 +164,71 @@ export const useWallet = () => {
         }
     }
 
-    const handleTokenChange = useCallback((e) => {
-        setSelectedToken(TOKENS.filter(token => token.address === e.target.value)[0] || TOKENS[0])
-    }, [])
+    const withdraw = async () => {
+        if (!dexContract) return;
+        setLoading(true);
+        const notifyId = notifyLoading("Transaction in progress...");
+        try {
+            if (!amountController.value || parseFloat(amountController.value) <= 0) {
+                Swal.fire({
+                    ...SwalConfig,
+                    title: "Warning!",
+                    text: "Can not withdraw ZERO or NULL value.",
+                    icon: "warning",
+                    iconColor: "#FF9700",
+                });
+                notifyError(`Error: Zero or NULL value`)
+                setLoading(false);
+                return;
+            }
+
+            const response = await awaitTransaction(
+                dexContract.withdraw(
+                    ethers.utils.parseEther(amountController.value),
+                    selectedToken.ticker
+                )
+            );
+
+            if (response.status) {
+                Swal.fire({
+                    ...SwalConfig,
+                    title: "Successful",
+                    text: "Transaction Completed Successfully",
+                    icon: "success",
+                    iconColor: "#7ED03F",
+                    confirmButtonColor: "#00ff22"
+                });
+                refetch();
+                setAmount("0");
+                notifySuccess("Transaction Completed.")
+            } else {
+                Swal.fire({
+                    ...SwalConfig,
+                    title: "Error",
+                    text: response.error,
+                    icon: "error",
+                    iconColor: "#E56672",
+                });
+                notifyError(`Error: ${response.error}`)
+            }
+
+            setLoading(false);
+            return response.status;
+        } catch (error) {
+            Swal.fire({
+                ...SwalConfig,
+                title: "Error",
+                text: error,
+                icon: "error",
+                iconColor: "#E56672",
+            });
+            notifyError(`Error: ${error.message}`)
+            setLoading(false);
+            return false;
+        } finally {
+            dismissNotify(notifyId);
+        }
+    }
 
     const getWalletBalance = () => {
         switch (selectedToken.symbol) {
@@ -207,6 +272,7 @@ export const useWallet = () => {
         setAmount,
         amountController,
         deposit,
+        withdraw,
         getWalletBalance,
         getDexBalance,
         provider,
