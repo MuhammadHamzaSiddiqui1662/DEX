@@ -1,0 +1,32 @@
+.walletCard {
+    width: 450px;
+    border: 1px solid var(--color-primary);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.balances {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 16px;
+    padding: 16px 0px;
+}
+
+.dex-balance {
+    text-align: left;
+}
+
+.wallet-balance {
+    text-align: right;
+}
+
+.dex-balance>p:last-child,
+.wallet-balance>p:last-child {
+    color: #787;
+}
