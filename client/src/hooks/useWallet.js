@@ -129,11 +129,11 @@ export const useWallet = () => {
                     title: "Successful",
                     text: "Transaction Completed Successfully",
                     icon: "success",
-                    iconColor: "#7ED03F",
+                    iconColor: "#00ff22",
                     confirmButtonColor: "#00ff22"
                 });
                 refetch();
-                setAmount("0");
+                amountController.setValue("0");
                 notifySuccess("Transaction Completed.")
             } else {
                 Swal.fire({
@@ -195,11 +195,11 @@ export const useWallet = () => {
                     title: "Successful",
                     text: "Transaction Completed Successfully",
                     icon: "success",
-                    iconColor: "#7ED03F",
+                    iconColor: "#00ff22",
                     confirmButtonColor: "#00ff22"
                 });
                 refetch();
-                setAmount("0");
+                amountController.setValue("0");
                 notifySuccess("Transaction Completed.")
             } else {
                 Swal.fire({
@@ -246,7 +246,7 @@ export const useWallet = () => {
             default:
                 return BigNumber.from(0);
         }
-    }, [selectedToken])
+    }, [selectedToken, balance, daiBalance, batBalance, repBalance, zrxBalance])
 
     const getDexBalance = useCallback(() => {
         switch (selectedToken.symbol) {
@@ -273,6 +273,7 @@ export const useWallet = () => {
         withdraw,
         getWalletBalance,
         getDexBalance,
+        refetch,
         provider,
         signer,
         address,
