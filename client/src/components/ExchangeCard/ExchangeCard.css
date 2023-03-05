@@ -1,10 +1,10 @@
 .exchangeCard {
-    width: 300px;
-    border-right: 1px solid var(--color-primary);
+    width: 100%;
+    border-right: 1px solid #00ff2233;
     padding: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 16px;
 }

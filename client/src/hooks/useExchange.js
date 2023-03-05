@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { DexContractConfig, SwalConfig } from "../config";
 import { useContract } from 'wagmi';
 import { ethers } from "ethers";
-import { DEX_ADDRESS, TOKENS } from "../config/constants";
+import { TOKENS } from "../config/constants";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { awaitTransaction } from "../utils";
 import useNotify from "./useNotify";
@@ -191,7 +191,7 @@ export const useExchange = () => {
     }
 
     return {
-        tokens: TOKENS,
+        tokens: TOKENS.filter(token => token.symbol != "DAI"),
         ORDER_TYPES,
         TRANSACTION_TYPES,
         selectedToken,

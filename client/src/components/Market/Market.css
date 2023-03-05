@@ -1,0 +1,11 @@
+.market {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 24px;
+}
+
+.otherCharts {
+    display: flex;
+    justify-content: space-between;
+}

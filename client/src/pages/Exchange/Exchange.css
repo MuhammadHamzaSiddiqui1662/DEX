@@ -1,0 +1,4 @@
+.exchange {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
