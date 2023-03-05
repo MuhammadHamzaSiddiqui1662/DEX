@@ -28,3 +28,11 @@
     font-weight: 700;
     cursor: pointer;
 }
+
+.navList a:hover {
+    color: var(--color-primary);
+}
+
+.navList li.active {
+    border-bottom: 2px solid var(--color-primary);
+}
