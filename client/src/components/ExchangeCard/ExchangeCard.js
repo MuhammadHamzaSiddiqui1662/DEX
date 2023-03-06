@@ -5,8 +5,17 @@ import { useExchange } from "../../hooks/useExchange";
 import { CircularLoader } from "../CircularLoader/CircularLoader";
 import "./ExchangeCard.css";
 
-export const ExchangeCard = () => {
-    const { createMarketOrder, createLimitOrder, tokens, selectedToken, handleTokenChange, TRANSACTION_TYPES, ORDER_TYPES, orderTypeController, amountController, priceController, isLoading } = useExchange();
+export const ExchangeCard = ({ tokens, selectedToken, handleTokenChange }) => {
+    const {
+        createMarketOrder,
+        createLimitOrder,
+        TRANSACTION_TYPES,
+        ORDER_TYPES,
+        orderTypeController,
+        amountController,
+        priceController,
+        isLoading
+    } = useExchange(selectedToken);
     return (
         <div className="exchangeCard">
             <h2 className="exchangeHeading">Exchange</h2>

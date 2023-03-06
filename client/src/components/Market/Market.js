@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { LineChart, Line, ResponsiveContainer, Label, XAxis, YAxis, Tooltip } from 'recharts';
+import { useMarket } from '../../hooks/useMarket';
 import './Market.css';
 
 const data = [
@@ -27,14 +29,18 @@ const contentStyle = {
     borderColor: "#00ff2233"
 }
 
-export const Market = () => {
+export const Market = ({ tokens, selectedToken }) => {
+    const { buyOrders, sellOrders, isLoading } = useMarket(tokens);
+    useEffect(() => {
+        console.log(buyOrders[selectedToken.symbol]);
+    }, [selectedToken])
     return (
         <div className="market">
             <div className='mainChart'>
                 <ResponsiveContainer width={"100%"} height={380}>
-                    <LineChart data={data}>
+                    <LineChart data={buyOrders[selectedToken.symbol]}>
                         <Line type="monotone" dataKey="price" stroke="#00ff22" />
-                        <XAxis dataKey="timeStamp">
+                        <XAxis dataKey="date">
                             <Label value="Pages of my website" position="insideBottom" offset={0} />
                         </XAxis>
                         <YAxis>

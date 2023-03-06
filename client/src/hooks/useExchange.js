@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DexContractConfig, SwalConfig } from "../config";
 import { useContract } from 'wagmi';
 import { ethers } from "ethers";
-import { TOKENS } from "../config/constants";
+import { TOKENS as ALL_TOKENS } from "../config/constants";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { awaitTransaction } from "../utils";
 import useNotify from "./useNotify";
@@ -11,13 +11,11 @@ import { useWallet } from "./useWallet";
 const ORDER_TYPES = ["Limit", "Market"];
 const TRANSACTION_TYPES = ["BUY", "SELL"];
 
-export const useExchange = () => {
+export const useExchange = (selectedToken) => {
     const [loading, setLoading] = useState(false);
     const {
         signer,
         amountController,
-        selectedToken,
-        handleTokenChange,
         getDexBalance,
         getWalletBalance,
         refetch,
@@ -191,11 +189,8 @@ export const useExchange = () => {
     }
 
     return {
-        tokens: TOKENS.filter(token => token.symbol != "DAI"),
         ORDER_TYPES,
         TRANSACTION_TYPES,
-        selectedToken,
-        handleTokenChange,
         amountController,
         priceController,
         orderTypeController,
