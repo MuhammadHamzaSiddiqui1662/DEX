@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useContractReads } from "wagmi";
 import { DexContractConfig } from "../config";
-import { useExchange } from "./useExchange";
 
-export const useMarket = (tokens) => {
-    const { selectedToken } = useExchange();
+export const useMarket = (tokens, selectedToken) => {
     const [buyOrders, setBuyOrders] = useState({
         bat: [],
         rep: [],
@@ -30,6 +28,7 @@ export const useMarket = (tokens) => {
             }))
         ],
         onSuccess(data) {
+            console.log(data);
             setBuyOrders({
                 BAT: data[0].map(order => {
                     let time = new Date(order.date.toNumber())
