@@ -8,6 +8,7 @@ import { DEX_ADDRESS, TOKENS } from "../config/constants";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { awaitTransaction } from "../utils";
 import useNotify from "./useNotify";
+import { useConnectModal } from '@rainbow-me/rainbowkit';
 
 export const useWallet = () => {
     const [loading, setLoading] = useState(false);
@@ -17,6 +18,7 @@ export const useWallet = () => {
     const { data: balance, isLoading: isLoadingBalance } = useBalance({
         address,
     });
+    const { openConnectModal } = useConnectModal();
 
     const [amount, setAmount] = useState("");
     const amountController = useMemo(() => ({
@@ -231,6 +233,7 @@ export const useWallet = () => {
     }
 
     const getWalletBalance = useCallback(() => {
+        if (!isConnected) return BigNumber.from(0);
         switch (selectedToken.symbol) {
             case "ETH":
                 return balance;
@@ -249,6 +252,7 @@ export const useWallet = () => {
     }, [selectedToken, balance, daiBalance, batBalance, repBalance, zrxBalance])
 
     const getDexBalance = useCallback(() => {
+        if (!isConnected) return BigNumber.from(0);
         switch (selectedToken.symbol) {
             case "DAI":
                 return dexBalance.daiBalance;
@@ -279,6 +283,7 @@ export const useWallet = () => {
         address,
         account,
         isConnected,
+        connectWallet: openConnectModal,
         isLoading: loading || isLoading || isLoadingBalance
     }
 
