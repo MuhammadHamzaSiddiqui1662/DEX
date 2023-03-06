@@ -1,8 +1,7 @@
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { DexContractConfig, SwalConfig } from "../config";
 import { useContract } from 'wagmi';
 import { ethers } from "ethers";
-import { TOKENS as ALL_TOKENS } from "../config/constants";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { awaitTransaction } from "../utils";
 import useNotify from "./useNotify";

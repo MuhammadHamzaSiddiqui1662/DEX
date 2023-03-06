@@ -249,7 +249,7 @@ export const useWallet = () => {
             default:
                 return BigNumber.from(0);
         }
-    }, [selectedToken, balance, daiBalance, batBalance, repBalance, zrxBalance])
+    }, [selectedToken, balance, daiBalance, batBalance, repBalance, zrxBalance, isConnected])
 
     const getDexBalance = useCallback(() => {
         if (!isConnected) return BigNumber.from(0);
@@ -266,7 +266,7 @@ export const useWallet = () => {
             default:
                 return BigNumber.from(0);
         }
-    }, [selectedToken, dexBalance])
+    }, [selectedToken, dexBalance, isConnected])
 
     return {
         tokens: TOKENS,

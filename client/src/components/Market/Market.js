@@ -31,9 +31,6 @@ const contentStyle = {
 
 export const Market = ({ tokens, selectedToken }) => {
     const { buyOrders, sellOrders, isLoading } = useMarket(tokens);
-    useEffect(() => {
-        console.log(buyOrders[selectedToken.symbol]);
-    }, [selectedToken])
     return (
         <div className="market">
             <div className='mainChart'>

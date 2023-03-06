@@ -4,7 +4,7 @@ import { Market } from "../../components/Market/Market"
 import './Exchange.css';
 
 import { TOKENS as ALL_TOKENS } from "../../config/constants";
-const TOKENS = ALL_TOKENS.filter(token => token.symbol != "DAI");
+const TOKENS = ALL_TOKENS.filter(token => token.symbol !== "DAI");
 
 export const Exchange = () => {
     const [selectedToken, setSelectedToken] = useState(TOKENS[0]);

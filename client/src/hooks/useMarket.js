@@ -16,7 +16,7 @@ export const useMarket = (tokens) => {
         zrx: []
     })
 
-    const { refetch, isLoading } = useContractReads({
+    const { isLoading } = useContractReads({
         contracts: [
             ...tokens.map(token => ({
                 ...DexContractConfig,
@@ -30,7 +30,6 @@ export const useMarket = (tokens) => {
             }))
         ],
         onSuccess(data) {
-            console.log(data);
             setBuyOrders({
                 BAT: data[0].map(order => {
                     let time = new Date(order.date.toNumber())
