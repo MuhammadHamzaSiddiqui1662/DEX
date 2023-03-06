@@ -9,6 +9,7 @@ import { Home } from './pages/Home/Home';
 import { Exchange } from './pages/Exchange/Exchange';
 import { WalletProvider } from './context/WalletProvider';
 import { ToastContainer } from "react-toastify";
+import { Orders } from './pages/Orders/Orders';
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
             <Router>
               <Routes>
                 <Route path="/" element={<Home />}>
-                  <Route path="/wallet" element={<Wallet />} />
                   <Route path="/" element={<Exchange />} />
-                  {/* <Route path="test" element={<Test />} /> */}
+                  <Route path="/orders" element={<Orders />} />
+                  <Route path="/wallet" element={<Wallet />} />
                   <Route path="*" element={<h3 style={{ color: "white" }}>Not Found</h3>} />
                 </Route>
               </Routes>

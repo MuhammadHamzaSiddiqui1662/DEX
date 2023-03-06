@@ -10,9 +10,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 30px;
+    gap: 60px;
     height: 100%;
-    width: -webkit-fill-available;
 }
 
 .navbarHeading {
@@ -23,7 +22,7 @@
 .navList {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 30px;
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;

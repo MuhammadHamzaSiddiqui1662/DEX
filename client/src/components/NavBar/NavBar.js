@@ -11,6 +11,9 @@ export const NavBar = () => {
                     <li className={pathname === "/" ? "active" : ""}>
                         <Link to="/">Exchange</Link>
                     </li>
+                    <li className={pathname === "/orders" ? "active" : ""}>
+                        <Link to="/orders">Orders</Link>
+                    </li>
                     <li className={pathname === "/wallet" ? "active" : ""}>
                         <Link to="/wallet">Wallet</Link>
                     </li>
