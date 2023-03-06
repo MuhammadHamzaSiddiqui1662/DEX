@@ -1,12 +1,12 @@
-import { useState } from "react";
 import { InputWithLabel } from "../InputWithLabel/InputWithLabel"
 import { SelectToken } from "../SelectToken/SelectToken";
 import { Tabs } from "../Tabs/Tabs";
 import { useExchange } from "../../hooks/useExchange";
+import { CircularLoader } from "../CircularLoader/CircularLoader";
 import "./ExchangeCard.css";
 
 export const ExchangeCard = () => {
-    const { createMarketOrder, createLimitOrder, tokens, selectedToken, handleTokenChange, TRANSACTION_TYPES, ORDER_TYPES, orderTypeController, amountController, priceController } = useExchange();
+    const { createMarketOrder, createLimitOrder, tokens, selectedToken, handleTokenChange, TRANSACTION_TYPES, ORDER_TYPES, orderTypeController, amountController, priceController, isLoading } = useExchange();
     return (
         <div className="exchangeCard">
             <h2 className="exchangeHeading">Exchange</h2>
@@ -35,8 +35,34 @@ export const ExchangeCard = () => {
                 />
             }
             <div className="buttonSection" >
-                <button className="outlinedButton fullwidth" type="button" onClick={() => orderTypeController.value === ORDER_TYPES[0] ? createLimitOrder(TRANSACTION_TYPES[1]) : createMarketOrder(TRANSACTION_TYPES[1])} >{TRANSACTION_TYPES[1]}</button>
-                <button className="filledButton fullwidth" type="button" onClick={() => orderTypeController.value === ORDER_TYPES[0] ? createLimitOrder(TRANSACTION_TYPES[0]) : createMarketOrder(TRANSACTION_TYPES[0])} >{TRANSACTION_TYPES[0]}</button>
+                <button
+                    className="outlinedButton fullwidth"
+                    type="button"
+                    onClick={
+                        () => orderTypeController.value === ORDER_TYPES[0] ?
+                            createLimitOrder(TRANSACTION_TYPES[1]) :
+                            createMarketOrder(TRANSACTION_TYPES[1])
+                    } >
+                    {
+                        isLoading ?
+                            <CircularLoader size={24} /> :
+                            TRANSACTION_TYPES[1]
+                    }
+                </button>
+                <button
+                    className="filledButton fullwidth"
+                    type="button"
+                    onClick={
+                        () => orderTypeController.value === ORDER_TYPES[0] ?
+                            createLimitOrder(TRANSACTION_TYPES[0]) :
+                            createMarketOrder(TRANSACTION_TYPES[0])
+                    } >
+                    {
+                        isLoading ?
+                            <CircularLoader size={24} /> :
+                            TRANSACTION_TYPES[0]
+                    }
+                </button>
             </div>
         </div>
     )
