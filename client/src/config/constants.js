@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 
+export const DEX_GRAPH_URL = "https://api.thegraph.com/subgraphs/name/muhammadhamzasiddiqui1662/dex-dumny"
+
 // Goerli Addresses
 export const DEX_ADDRESS = "0xA109804edd5C84c9c9Aaf5Bcc583C44A0397eF7b";
 export const DAI_ADDRESS = "0x8daa47c2A76730Ed4B9b6085887b788C52C82c57";

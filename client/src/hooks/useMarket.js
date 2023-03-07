@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useContractReads } from "wagmi";
+import { getBatTrades, getRepTrades, getTrades, getZrxTrades } from "../api/market";
 import { DexContractConfig } from "../config";
 
 export const useMarket = (tokens, selectedToken) => {
@@ -13,6 +14,10 @@ export const useMarket = (tokens, selectedToken) => {
         rep: [],
         zrx: []
     })
+    const [trades, setTrades] = useState([])
+    const [batTrades, setBatTrades] = useState([])
+    const [repTrades, setRepTrades] = useState([])
+    const [zrxTrades, setZrxTrades] = useState([])
 
     const { isLoading } = useContractReads({
         contracts: [
@@ -28,7 +33,6 @@ export const useMarket = (tokens, selectedToken) => {
             }))
         ],
         onSuccess(data) {
-            console.log(data);
             setBuyOrders({
                 BAT: data[0].map(order => {
                     let time = new Date(order.date.toNumber())
@@ -81,6 +85,18 @@ export const useMarket = (tokens, selectedToken) => {
                     }
                 })
             })
+            getTrades()
+                .then(res => setTrades(res))
+                .catch(err => console.log(err));
+            getBatTrades()
+                .then(res => setBatTrades(res))
+                .catch(err => console.log(err));
+            getRepTrades()
+                .then(res => setRepTrades(res))
+                .catch(err => console.log(err));
+            getZrxTrades()
+                .then(res => setZrxTrades(res))
+                .catch(err => console.log(err));
         },
         watch: true,
     });
@@ -89,6 +105,10 @@ export const useMarket = (tokens, selectedToken) => {
         selectedToken,
         buyOrders,
         sellOrders,
+        trades,
+        batTrades,
+        repTrades,
+        zrxTrades,
         isLoading
     }
 }
