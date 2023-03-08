@@ -1,5 +1,5 @@
 import { ethers } from "hardhat";
-import { ADDRESS_1, BAT_ADDRESS, DAI_ADDRESS, REP_ADDRESS, ZRX_ADDRESS } from "../constants";
+import { ADDRESS_1, ADDRESS_2, BAT_ADDRESS, DAI_ADDRESS, REP_ADDRESS, ZRX_ADDRESS } from "../constants";
 import { seedTokenBalance } from "../utils/seedTokenBalance";
 
 async function main() {
@@ -15,10 +15,15 @@ async function main() {
 
     const amount = ethers.utils.parseEther('5000');
 
-    await seedTokenBalance(dai, ADDRESS_1, amount);
-    await seedTokenBalance(bat, ADDRESS_1, amount);
-    await seedTokenBalance(rep, ADDRESS_1, amount);
-    await seedTokenBalance(zrx, ADDRESS_1, amount);
+    // await dai.faucet(ADDRESS_2, amount);
+    // await bat.faucet(ADDRESS_2, amount);
+    // await rep.faucet(ADDRESS_2, amount);
+    // await zrx.faucet(ADDRESS_2, amount);
+
+    // await seedTokenBalance(dai, ADDRESS_1, amount);
+    // await seedTokenBalance(bat, ADDRESS_1, amount);
+    // await seedTokenBalance(rep, ADDRESS_1, amount);
+    // await seedTokenBalance(zrx, ADDRESS_1, amount);
 }
 
 main().catch((error) => {
