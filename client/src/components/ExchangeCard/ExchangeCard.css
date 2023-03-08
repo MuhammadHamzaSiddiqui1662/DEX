@@ -9,6 +9,12 @@
     gap: 16px;
 }
 
+.tokenBalance {
+    color: #787;
+    width: 100%;
+    text-align: right;
+}
+
 .buttonSection {
     display: grid;
     grid-template-columns: 1fr 1fr;

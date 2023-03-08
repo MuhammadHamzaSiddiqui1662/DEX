@@ -16,7 +16,7 @@ export const getTrades = async () => {
         }`,
     })
     newTrades.forEach(trade => {
-        trade.price = Number(trade.price);
+        trade.price = Number(ethers.utils.formatEther(trade.price));
         let time = new Date(Number(trade.date) * 1000);
         trade.date = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
     });
@@ -37,7 +37,7 @@ export const getBatTrades = async () => {
         }`,
     })
     newTrades.forEach(trade => {
-        trade.price = Number(trade.price);
+        trade.price = Number(ethers.utils.formatEther(trade.price));
         let time = new Date(Number(trade.date) * 1000);
         trade.date = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
     });
@@ -58,7 +58,7 @@ export const getRepTrades = async () => {
         }`,
     })
     newTrades.forEach(trade => {
-        trade.price = Number(trade.price);
+        trade.price = Number(ethers.utils.formatEther(trade.price));
         let time = new Date(Number(trade.date) * 1000);
         trade.date = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
     });
@@ -79,7 +79,7 @@ export const getZrxTrades = async () => {
         }`,
     })
     newTrades.forEach(trade => {
-        trade.price = Number(trade.price);
+        trade.price = Number(ethers.utils.formatEther(trade.price));
         let time = new Date(Number(trade.date) * 1000);
         trade.date = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
     });

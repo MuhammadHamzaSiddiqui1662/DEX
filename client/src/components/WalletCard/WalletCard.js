@@ -20,11 +20,11 @@ export const WalletCard = () => {
             <div className="balances">
                 <div className="dex-balance">
                     <p>DEX</p>
-                    <p>{`${ethers.utils.formatEther(getDexBalance() ?? ethers.BigNumber.from(0))} ${selectedToken.symbol}`}</p>
+                    <p>{`${ethers.utils.formatEther(getDexBalance(selectedToken.symbol) ?? ethers.BigNumber.from(0))} ${selectedToken.symbol}`}</p>
                 </div>
                 <div className="wallet-balance">
                     <p>Wallet</p>
-                    <p>{`${ethers.utils.formatEther(getWalletBalance() ?? ethers.BigNumber.from(0))} ${selectedToken.symbol}`}</p>
+                    <p>{`${ethers.utils.formatEther(getWalletBalance(selectedToken.symbol) ?? ethers.BigNumber.from(0))} ${selectedToken.symbol}`}</p>
                 </div>
             </div>
             <InputWithLabel label={"Amount"} type={"number"} fullwidth={true} value={amountController.value} setValue={amountController.setValue} placeholder={"Enter Amount..."} >

@@ -15,27 +15,17 @@ export const ExchangeCard = ({ tokens, selectedToken, handleTokenChange }) => {
         orderTypeController,
         amountController,
         priceController,
+        getDexBalance,
         isLoading
     } = useExchange(selectedToken);
-    console.log(ethers.utils.formatBytes32String("ZRX"));
     return (
         <div className="exchangeCard">
             <h2 className="exchangeHeading">Exchange</h2>
             <div></div>
             <Tabs tabs={ORDER_TYPES} selectedTab={orderTypeController.value} setSelectedTab={orderTypeController.setValue} />
             <div></div>
-            <InputWithLabel
-                label={"Amount"}
-                type={"number"}
-                fullwidth={true}
-                value={amountController.value}
-                setValue={amountController.setValue}
-                placeholder={"Enter Amount..."}
-            >
-                <SelectToken tokens={tokens} selectedToken={selectedToken} handleTokenChange={handleTokenChange} position="absolute" />
-            </InputWithLabel>
             {
-                orderTypeController.value === "Limit" &&
+                orderTypeController.value === ORDER_TYPES[0] &&
                 <InputWithLabel
                     label={"Price"}
                     type={"number"}
@@ -45,6 +35,17 @@ export const ExchangeCard = ({ tokens, selectedToken, handleTokenChange }) => {
                     placeholder={"Enter Desired Price..."}
                 />
             }
+            <InputWithLabel
+                label={"Amount"}
+                type={"number"}
+                fullwidth={true}
+                value={amountController.value}
+                setValue={amountController.setValue}
+                placeholder={"Enter Amount..."}
+            >
+                <p className="tokenBalance">{`${selectedToken.symbol} Balance: ${ethers.utils.formatEther(getDexBalance(selectedToken.symbol))}`}</p>
+                <SelectToken tokens={tokens} selectedToken={selectedToken} handleTokenChange={handleTokenChange} position="absolute" />
+            </InputWithLabel>
             <div className="buttonSection" >
                 <button
                     className="outlinedButton fullwidth"

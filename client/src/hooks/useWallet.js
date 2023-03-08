@@ -107,6 +107,7 @@ export const useWallet = () => {
             if (!amountController.value || parseFloat(amountController.value) <= 0) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO WALLET",
                     title: "Warning!",
                     text: "Can not deposite ZERO or NULL value.",
                     icon: "warning",
@@ -130,6 +131,7 @@ export const useWallet = () => {
             if (response.status) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO WALLET",
                     title: "Successful",
                     text: "Transaction Completed Successfully",
                     icon: "success",
@@ -142,6 +144,7 @@ export const useWallet = () => {
             } else {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO WALLET",
                     title: "Error",
                     text: response.error,
                     icon: "error",
@@ -155,6 +158,7 @@ export const useWallet = () => {
         } catch (error) {
             Swal.fire({
                 ...SwalConfig,
+                confirmButtonText: "GO BACK TO WALLET",
                 title: "Error",
                 text: error,
                 icon: "error",
@@ -176,6 +180,7 @@ export const useWallet = () => {
             if (!amountController.value || parseFloat(amountController.value) <= 0) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO WALLET",
                     title: "Warning!",
                     text: "Can not withdraw ZERO or NULL value.",
                     icon: "warning",
@@ -196,6 +201,7 @@ export const useWallet = () => {
             if (response.status) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO WALLET",
                     title: "Successful",
                     text: "Transaction Completed Successfully",
                     icon: "success",
@@ -208,6 +214,7 @@ export const useWallet = () => {
             } else {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO WALLET",
                     title: "Error",
                     text: response.error,
                     icon: "error",
@@ -221,6 +228,7 @@ export const useWallet = () => {
         } catch (error) {
             Swal.fire({
                 ...SwalConfig,
+                confirmButtonText: "GO BACK TO WALLET",
                 title: "Error",
                 text: error,
                 icon: "error",
@@ -234,9 +242,9 @@ export const useWallet = () => {
         }
     }
 
-    const getWalletBalance = useCallback(() => {
+    const getWalletBalance = useCallback((tokenSymbol) => {
         if (!isConnected) return BigNumber.from(0);
-        switch (selectedToken.symbol) {
+        switch (tokenSymbol) {
             case "ETH":
                 return balance;
             case "DAI":
@@ -251,11 +259,11 @@ export const useWallet = () => {
             default:
                 return BigNumber.from(0);
         }
-    }, [selectedToken, balance, daiBalance, batBalance, repBalance, zrxBalance, isConnected])
+    }, [balance, daiBalance, batBalance, repBalance, zrxBalance, isConnected])
 
-    const getDexBalance = useCallback(() => {
+    const getDexBalance = useCallback((tokenSymbol) => {
         if (!isConnected) return BigNumber.from(0);
-        switch (selectedToken.symbol) {
+        switch (tokenSymbol) {
             case "DAI":
                 return dexBalance.daiBalance;
             case "BAT":
@@ -268,7 +276,7 @@ export const useWallet = () => {
             default:
                 return BigNumber.from(0);
         }
-    }, [selectedToken, dexBalance, isConnected])
+    }, [dexBalance, isConnected])
 
     return {
         tokens: TOKENS,

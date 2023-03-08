@@ -33,58 +33,58 @@ export const useMarket = (tokens, selectedToken) => {
             }))
         ],
         onSuccess(data) {
-            setBuyOrders({
-                BAT: data[0].map(order => {
-                    let time = new Date(order.date.toNumber())
-                    return {
-                        ...order,
-                        date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
-                    }
-                }),
-                REP: data[1].map(order => {
-                    let time = new Date(order.date.toNumber())
-                    return {
-                        ...order,
-                        date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
-                    }
-                }),
-                ZRX: data[2].map(order => {
-                    let time = new Date(order.date.toNumber())
-                    return {
-                        ...order,
-                        date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
-                    }
-                })
-            })
-            setSellOrders({
-                BAT: data[3].map(order => {
-                    let time = new Date(order.date.toNumber())
-                    return {
-                        ...order,
-                        date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
-                    }
-                }),
-                REP: data[4].map(order => {
-                    let time = new Date(order.date.toNumber())
-                    return {
-                        ...order,
-                        date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
-                    }
-                }),
-                ZRX: data[5].map(order => {
-                    let time = new Date(order.date.toNumber())
-                    return {
-                        ...order,
-                        date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
-                    }
-                })
-            })
+            // setBuyOrders({
+            //     BAT: data[0].map(order => {
+            //         let time = new Date(order.date.toNumber())
+            //         return {
+            //             ...order,
+            //             date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
+            //             price: order.price.toNumber()
+            //         }
+            //     }),
+            //     REP: data[1].map(order => {
+            //         let time = new Date(order.date.toNumber())
+            //         return {
+            //             ...order,
+            //             date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
+            //             price: order.price.toNumber()
+            //         }
+            //     }),
+            //     ZRX: data[2].map(order => {
+            //         let time = new Date(order.date.toNumber())
+            //         return {
+            //             ...order,
+            //             date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
+            //             price: order.price.toNumber()
+            //         }
+            //     })
+            // })
+            // setSellOrders({
+            //     BAT: data[3].map(order => {
+            //         let time = new Date(order.date.toNumber())
+            //         return {
+            //             ...order,
+            //             date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
+            //             price: order.price.toNumber()
+            //         }
+            //     }),
+            //     REP: data[4].map(order => {
+            //         let time = new Date(order.date.toNumber())
+            //         return {
+            //             ...order,
+            //             date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
+            //             price: order.price.toNumber()
+            //         }
+            //     }),
+            //     ZRX: data[5].map(order => {
+            //         let time = new Date(order.date.toNumber())
+            //         return {
+            //             ...order,
+            //             date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
+            //             price: order.price.toNumber()
+            //         }
+            //     })
+            // })
             getTrades()
                 .then(res => setTrades(res))
                 .catch(err => console.log(err));
@@ -103,8 +103,8 @@ export const useMarket = (tokens, selectedToken) => {
 
     return {
         selectedToken,
-        buyOrders,
-        sellOrders,
+        // buyOrders,
+        // sellOrders,
         trades,
         batTrades,
         repTrades,

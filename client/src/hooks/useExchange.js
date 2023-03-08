@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
 import { DexContractConfig, SwalConfig } from "../config";
 import { useContract } from 'wagmi';
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { awaitTransaction } from "../utils";
 import useNotify from "./useNotify";
 import { useWallet } from "./useWallet";
 
-const ORDER_TYPES = ["Limit", "Market"];
+const ORDER_TYPES = ["Offer", "Trade"];
 const TRANSACTION_TYPES = ["BUY", "SELL"];
 
 export const useExchange = (selectedToken) => {
@@ -49,6 +49,8 @@ export const useExchange = (selectedToken) => {
             if (!amountController.value || parseFloat(amountController.value) <= 0) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO EXCHANGE",
+                    confirmButtonText: "GO BACK TO EXCHANGE",
                     title: "Warning!",
                     text: `Enter a valid amount.`,
                     icon: "warning",
@@ -69,6 +71,7 @@ export const useExchange = (selectedToken) => {
             if (response.status) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO EXCHANGE",
                     title: "Successful",
                     text: "Transaction Completed Successfully",
                     icon: "success",
@@ -76,11 +79,12 @@ export const useExchange = (selectedToken) => {
                     confirmButtonColor: "#00ff22"
                 });
                 refetch();
-                amountController.setValue("0");
+                amountController.setValue("");
                 notifySuccess("Transaction Completed.")
             } else {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO EXCHANGE",
                     title: "Error",
                     text: response.error,
                     icon: "error",
@@ -94,6 +98,7 @@ export const useExchange = (selectedToken) => {
         } catch (error) {
             Swal.fire({
                 ...SwalConfig,
+                confirmButtonText: "GO BACK TO EXCHANGE",
                 title: "Error",
                 text: error,
                 icon: "error",
@@ -115,6 +120,7 @@ export const useExchange = (selectedToken) => {
             if (!amountController.value || parseFloat(amountController.value) <= 0) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO EXCHANGE",
                     title: "Warning!",
                     text: `Enter a valid amount.`,
                     icon: "warning",
@@ -127,6 +133,7 @@ export const useExchange = (selectedToken) => {
             else if (!priceController.value || parseFloat(priceController.value) <= 0) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO EXCHANGE",
                     title: "Warning!",
                     text: `Enter a valid price.`,
                     icon: "warning",
@@ -148,6 +155,7 @@ export const useExchange = (selectedToken) => {
             if (response.status) {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO EXCHANGE",
                     title: "Successful",
                     text: "Transaction Completed Successfully",
                     icon: "success",
@@ -155,12 +163,13 @@ export const useExchange = (selectedToken) => {
                     confirmButtonColor: "#00ff22"
                 });
                 refetch();
-                amountController.setValue("0");
-                priceController.setValue("0");
+                amountController.setValue("");
+                priceController.setValue("");
                 notifySuccess("Transaction Completed.")
             } else {
                 Swal.fire({
                     ...SwalConfig,
+                    confirmButtonText: "GO BACK TO EXCHANGE",
                     title: "Error",
                     text: response.error,
                     icon: "error",
@@ -174,6 +183,7 @@ export const useExchange = (selectedToken) => {
         } catch (error) {
             Swal.fire({
                 ...SwalConfig,
+                confirmButtonText: "GO BACK TO EXCHANGE",
                 title: "Error",
                 text: error,
                 icon: "error",
