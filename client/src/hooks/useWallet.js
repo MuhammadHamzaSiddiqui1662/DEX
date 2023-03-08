@@ -102,7 +102,7 @@ export const useWallet = () => {
     const deposit = async () => {
         if (!dexContract) return;
         setLoading(true);
-        const notifyId = notifyLoading("Transaction in progress...");
+        let notifyId;
         try {
             if (!amountController.value || parseFloat(amountController.value) <= 0) {
                 Swal.fire({
@@ -118,6 +118,8 @@ export const useWallet = () => {
             }
 
             await approve(selectedToken.address, DEX_ADDRESS, ethers.utils.parseEther(amountController.value), signer, address)
+
+            notifyId = notifyLoading("Transaction in progress...");
 
             const response = await awaitTransaction(
                 dexContract.deposit(
@@ -135,7 +137,7 @@ export const useWallet = () => {
                     confirmButtonColor: "#00ff22"
                 });
                 refetch();
-                amountController.setValue("0");
+                amountController.setValue("");
                 notifySuccess("Transaction Completed.")
             } else {
                 Swal.fire({
@@ -201,7 +203,7 @@ export const useWallet = () => {
                     confirmButtonColor: "#00ff22"
                 });
                 refetch();
-                amountController.setValue("0");
+                amountController.setValue("");
                 notifySuccess("Transaction Completed.")
             } else {
                 Swal.fire({

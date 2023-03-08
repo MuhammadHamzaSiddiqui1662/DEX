@@ -274,7 +274,8 @@ contract Dex {
             );
         } else {
             require(
-                traderBalances[msg.sender][DAI] >= amount.mul(price),
+                traderBalances[msg.sender][DAI] >=
+                    amount.mul(price).div(1000000000000000000),
                 "dai balance too low"
             );
         }
@@ -346,18 +347,20 @@ contract Dex {
                 ].sub(matched);
                 traderBalances[msg.sender][DAI] = traderBalances[msg.sender][
                     DAI
-                ].add(matched.mul(orders[i].price));
+                ].add(matched.mul(orders[i].price).div(1000000000000000000));
                 traderBalances[orders[i].trader][ticker] = traderBalances[
                     orders[i].trader
                 ][ticker].add(matched);
                 traderBalances[orders[i].trader][DAI] = traderBalances[
                     orders[i].trader
-                ][DAI].sub(matched.mul(orders[i].price));
+                ][DAI].sub(
+                        matched.mul(orders[i].price).div(1000000000000000000)
+                    );
             }
             if (side == Side.BUY) {
                 require(
                     traderBalances[msg.sender][DAI] >=
-                        matched.mul(orders[i].price),
+                        matched.mul(orders[i].price).div(1000000000000000000),
                     "dai balance too low"
                 );
                 traderBalances[msg.sender][ticker] = traderBalances[msg.sender][
@@ -365,13 +368,15 @@ contract Dex {
                 ].add(matched);
                 traderBalances[msg.sender][DAI] = traderBalances[msg.sender][
                     DAI
-                ].sub(matched.mul(orders[i].price));
+                ].sub(matched.mul(orders[i].price).div(1000000000000000000));
                 traderBalances[orders[i].trader][ticker] = traderBalances[
                     orders[i].trader
                 ][ticker].sub(matched);
                 traderBalances[orders[i].trader][DAI] = traderBalances[
                     orders[i].trader
-                ][DAI].add(matched.mul(orders[i].price));
+                ][DAI].add(
+                        matched.mul(orders[i].price).div(1000000000000000000)
+                    );
             }
             nextTradeId++;
             i++;

@@ -113,8 +113,12 @@ async function main() {
     //     console.log("Verified!");
     // }
 
-    // const tokens = await dex.getTokens();
-    // console.log("Token List: ", tokens.length);
+
+    // const amount = ethers.utils.parseEther('5000');
+    // await dex.deposit(amount, formatBytes32String("BAT"), { from: ADDRESS_1 });
+
+    const tokens = await dex.getTokens();
+    console.log("Token List: ", tokens);
 }
 
 main().catch((error) => {

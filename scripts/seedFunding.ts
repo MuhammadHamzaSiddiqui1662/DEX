@@ -13,7 +13,7 @@ async function main() {
     const Zrx = await ethers.getContractFactory("Zrx");
     const zrx = await Zrx.attach(ZRX_ADDRESS);
 
-    const amount = ethers.utils.parseEther('100');
+    const amount = ethers.utils.parseEther('5000');
 
     await seedTokenBalance(dai, ADDRESS_1, amount);
     await seedTokenBalance(bat, ADDRESS_1, amount);

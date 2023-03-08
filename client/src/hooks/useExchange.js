@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { DexContractConfig, SwalConfig } from "../config";
 import { useContract } from 'wagmi';
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { awaitTransaction } from "../utils";
 import useNotify from "./useNotify";
@@ -138,7 +138,7 @@ export const useExchange = (selectedToken) => {
             }
 
             const response = await awaitTransaction(
-                dexContract.createMarketOrder(
+                dexContract.createLimitOrder(
                     selectedToken.ticker,
                     ethers.utils.parseEther(amountController.value),
                     ethers.utils.parseEther(priceController.value),

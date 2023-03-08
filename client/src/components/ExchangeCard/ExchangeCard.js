@@ -4,6 +4,7 @@ import { Tabs } from "../Tabs/Tabs";
 import { useExchange } from "../../hooks/useExchange";
 import { CircularLoader } from "../CircularLoader/CircularLoader";
 import "./ExchangeCard.css";
+import { ethers } from "ethers";
 
 export const ExchangeCard = ({ tokens, selectedToken, handleTokenChange }) => {
     const {
@@ -16,6 +17,7 @@ export const ExchangeCard = ({ tokens, selectedToken, handleTokenChange }) => {
         priceController,
         isLoading
     } = useExchange(selectedToken);
+    console.log(ethers.utils.formatBytes32String("ZRX"));
     return (
         <div className="exchangeCard">
             <h2 className="exchangeHeading">Exchange</h2>
