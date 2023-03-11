@@ -1,9 +1,10 @@
+import { ethers } from "ethers";
 import { useCallback, useState } from "react";
 import { useContractReads } from "wagmi";
 import { DexContractConfig } from "../config";
 
-import { TOKENS as ALL_TOKENS } from "../../config/constants";
-const TOKENS = ALL_TOKENS.filter(token => token.symbol != "DAI");
+import { TOKENS as ALL_TOKENS } from "../config/constants";
+const TOKENS = ALL_TOKENS.filter(token => token.symbol !== "DAI");
 
 export const useOrderBook = (tokens) => {
     const [buyOrders, setBuyOrders] = useState({
@@ -37,63 +38,65 @@ export const useOrderBook = (tokens) => {
         ],
         onSuccess(data) {
             setBuyOrders({
-                BAT: data[0].map(order => {
+                BAT: data[0]?.map(order => {
                     let time = new Date(order.date.toNumber())
                     return {
                         ...order,
                         date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
+                        price: ethers.utils.formatEther(order.price)
                     }
-                }),
-                REP: data[1].map(order => {
+                }) || [],
+                REP: data[1]?.map(order => {
                     let time = new Date(order.date.toNumber())
                     return {
                         ...order,
                         date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
+                        price: ethers.utils.formatEther(order.price)
                     }
-                }),
-                ZRX: data[2].map(order => {
+                }) || [],
+                ZRX: data[2]?.map(order => {
                     let time = new Date(order.date.toNumber())
                     return {
                         ...order,
                         date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
+                        price: ethers.utils.formatEther(order.price)
                     }
-                })
+                }) || []
             })
             setSellOrders({
-                BAT: data[3].map(order => {
+                BAT: data[3]?.map(order => {
                     let time = new Date(order.date.toNumber())
                     return {
                         ...order,
                         date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
+                        price: ethers.utils.formatEther(order.price)
                     }
-                }),
-                REP: data[4].map(order => {
+                }) || [],
+                REP: data[4]?.map(order => {
                     let time = new Date(order.date.toNumber())
                     return {
                         ...order,
                         date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
+                        price: ethers.utils.formatEther(order.price)
                     }
-                }),
-                ZRX: data[5].map(order => {
+                }) || [],
+                ZRX: data[5]?.map(order => {
                     let time = new Date(order.date.toNumber())
                     return {
                         ...order,
                         date: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`,
-                        price: order.price.toNumber()
+                        price: ethers.utils.formatEther(order.price)
                     }
-                })
+                }) || []
             })
         },
         watch: true,
     });
 
     return {
+        TOKENS,
         selectedToken,
+        handleTokenChange,
         buyOrders,
         sellOrders,
         isLoading
